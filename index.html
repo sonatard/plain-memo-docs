@@ -19,7 +19,7 @@
     <ul>
       <li>Write notes as plain text. No formatting, no Markdown.</li>
       <li>Sync your notes across all of your Macs and Android devices.</li>
-      <li>Your notes are stored on your devices and in a "Plain Memo" folder in <strong>your own Google Drive</strong>. There is no Plain Memo server.</li>
+      <li>Your notes are stored on your devices and in a "Plain Memo" folder in <strong>your own Google Drive</strong>. There is no Plain Memo server. Plain Memo uses Firebase (a Google service) only to tell your other devices that something changed, never to store your notes.</li>
       <li>Add several Google accounts to keep work and personal notes apart.</li>
     </ul>
   </section>
@@ -28,7 +28,7 @@
     <h2>Google sign-in</h2>
     <p>Plain Memo asks Google for these permissions only:</p>
     <ul>
-      <li><code>openid</code> and <code>email</code>: to tell your Google accounts apart.</li>
+      <li><code>openid</code> and <code>email</code>: to tell your Google accounts apart, and to sign in to Firebase for change notifications.</li>
       <li><code>drive.file</code>: to create the "Plain Memo" folder in your Google Drive and read and write the files in it. Plain Memo can only access files it created itself, and cannot see any other file in your Drive. Please don't delete this folder; renaming or moving it is fine.</li>
     </ul>
     <p>Details are in the <a href="privacy.html">privacy policy</a>.</p>
@@ -36,7 +36,7 @@
 
   <section lang="ja">
     <h2>Plain Memo について</h2>
-    <p>macOS と Android で使う、ただのテキストを書くシンプルなメモアプリです。メモは端末と、あなた自身の Google Drive の「Plain Memo」フォルダにだけ保存し、複数の端末の間で同期します。Plain Memo のサーバーはありません。同期のため、このフォルダは消さないでください（名前の変更と移動は構いません）。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+    <p>macOS と Android で使う、ただのテキストを書くシンプルなメモアプリです。メモは端末と、あなた自身の Google Drive の「Plain Memo」フォルダにだけ保存し、複数の端末の間で同期します。Plain Memo のサーバーはありません。ほかの端末に変更をすぐ知らせるためだけに Firebase（Google のサービス）を使い、メモはそこに置きません。同期のため、このフォルダは消さないでください（名前の変更と移動は構いません）。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
   </section>
 
   <footer>

@@ -12,27 +12,40 @@
   <header>
     <p><a href="./">← Plain Memo</a></p>
     <h1>Privacy Policy</h1>
-    <p class="meta">Effective date: November 14, 2026</p>
+    <p class="meta">Effective date: November 16, 2026 (first published November 14, 2026)</p>
   </header>
 
   <section>
     <h2>Summary</h2>
-    <p>Plain Memo keeps your notes on your own devices and in your own Google Drive. The developer runs no server, collects no data, and never receives your notes or your Google account data.</p>
+    <p>Plain Memo keeps your notes on your own devices and in your own Google Drive. The developer runs no server and never receives your notes.</p>
+    <p>To tell your other devices right away that something changed, Plain Memo uses Firebase, a Google service, in the developer's Google Cloud project. Through Firebase, the developer can see your Google account's identifier and email address, and roughly when you last edited. Firebase never receives the content of your notes.</p>
   </section>
 
   <section>
     <h2>Data Plain Memo accesses</h2>
     <ul>
       <li><strong>Your notes.</strong> Stored on your devices and in a "Plain Memo" folder that Plain Memo creates in your Google Drive (the <code>drive.file</code> scope), so that your devices can sync them. Plain Memo can only see, read and change the files and folders it created itself. It cannot see, read or change any other file in your Google Drive.</li>
-      <li><strong>Your Google account's identifier and email address</strong> (the <code>openid</code> and <code>email</code> scopes). Used only on your devices, to tell your Google accounts apart and to show which account a set of notes belongs to.</li>
-      <li><strong>Sign-in tokens.</strong> Stored only on your devices (in the macOS Keychain, or in the app's private storage on Android), and sent only to Google to access your Google Drive.</li>
+      <li><strong>Your Google account's identifier and email address</strong> (the <code>openid</code> and <code>email</code> scopes). Used on your devices to tell your Google accounts apart and to show which account a set of notes belongs to, and to sign in to Firebase for change notifications (below).</li>
+      <li><strong>Sign-in tokens.</strong> Stored only on your devices (in the macOS Keychain, or in the app's private storage on Android), and sent only to Google: to Google Drive for your notes, and to Firebase for change notifications.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Change notifications (Firebase)</h2>
+    <ul>
+      <li>After your device saves a change to your Google Drive, Plain Memo writes a random value and a random device ID to Firebase Realtime Database, under your account's Firebase user ID. Your other devices that have Plain Memo open are listening there, and then read the change from your Google Drive. Each write replaces the previous one, so only the latest value is kept.</li>
+      <li>To do this, Plain Memo signs in to Firebase Authentication with your Google account. Firebase keeps your Firebase user ID, your email address, and when you first and last signed in. The developer can see these in the Firebase console.</li>
+      <li>Plain Memo never sends to Firebase the text or titles of your notes, how many notes you have, the names of your Google Drive files, or your encryption key.</li>
+      <li>Only Google accounts that the developer has allowed can use change notifications. Other accounts still sync through Google Drive, a few minutes later, but Firebase may keep their sign-in record.</li>
+      <li>Firebase is operated by Google. The notification data is stored in Google's Singapore region (<code>asia-southeast1</code>).</li>
     </ul>
   </section>
 
   <section>
     <h2>What Plain Memo does not do</h2>
     <ul>
-      <li>It does not send your notes or account data to the developer or to any third party. Data travels only between your devices and Google.</li>
+      <li>It does not send your notes to the developer or to any third party. Your notes travel only between your devices and your Google Drive.</li>
+      <li>It sends your account identifier and email address only to Google (Google Drive and Firebase), as described above.</li>
       <li>It does not use analytics, advertising or tracking.</li>
       <li>It does not sell, share or transfer your data.</li>
     </ul>
@@ -49,6 +62,7 @@
       <li>Remove an account in Plain Memo's settings to delete its notes and sign-in tokens from that device.</li>
       <li>Revoke Plain Memo's access at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
       <li>Delete Plain Memo's data in your Google Drive by deleting the "Plain Memo" folder in your Google Drive.</li>
+      <li>Ask the developer in <a href="https://github.com/sonatard/plain-memo-docs/issues">GitHub Issues</a> to delete your Firebase sign-in record and notification data. You don't need to post your email address there.</li>
     </ul>
   </section>
 
@@ -59,14 +73,16 @@
 
   <section lang="ja">
     <h2>プライバシーポリシー（日本語）</h2>
-    <p>Plain Memo は、メモをあなたの端末と、あなた自身の Google Drive にだけ保存します。開発者はサーバーを運営しておらず、データを集めることも、あなたのメモや Google アカウントのデータを受け取ることもありません。</p>
+    <p>Plain Memo は、メモをあなたの端末と、あなた自身の Google Drive にだけ保存します。開発者はサーバーを運営しておらず、あなたのメモを受け取ることはありません。</p>
+    <p>ほかの端末に変更をすぐ知らせるため、Plain Memo は開発者の Google Cloud プロジェクトの Firebase（Google のサービス）を使います。開発者は Firebase で、あなたの Google アカウントの識別子とメールアドレス、最後に編集したおおよその時刻を見ることができます。メモの中身が Firebase に送られることはありません。</p>
     <ul>
       <li><strong>メモ</strong>：端末と、Plain Memo が Google Drive に作る「Plain Memo」フォルダ（<code>drive.file</code> スコープ）に保存し、端末の間の同期に使います。Plain Memo が見たり、読んだり、変えたりできるのは、Plain Memo 自身が作ったファイルとフォルダだけです。Google Drive のほかのファイルを見たり、読んだり、変えたりすることはできません。</li>
-      <li><strong>Google アカウントの識別子とメールアドレス</strong>（<code>openid</code> と <code>email</code> スコープ）：端末の中で、どのアカウントのメモかを見分けて表示するためだけに使います。</li>
-      <li><strong>ログインのトークン</strong>：端末の中（macOS はキーチェーン、Android はアプリ専用の保存領域）にだけ保存し、Google Drive を使うために Google へだけ送ります。</li>
-      <li>メモやアカウントのデータを、開発者やほかの第三者に送ることはありません。解析・広告・追跡も行いません。データを売ったり、共有したり、渡したりすることもありません。</li>
+      <li><strong>Google アカウントの識別子とメールアドレス</strong>（<code>openid</code> と <code>email</code> スコープ）：端末の中で、どのアカウントのメモかを見分けて表示するために使います。また、変更の知らせのために Firebase へログインするときに使います。</li>
+      <li><strong>ログインのトークン</strong>：端末の中（macOS はキーチェーン、Android はアプリ専用の保存領域）にだけ保存し、Google へだけ送ります（メモのために Google Drive へ、変更の知らせのために Firebase へ）。</li>
+      <li><strong>変更の知らせ（Firebase）</strong>：端末が変更を Google Drive に保存すると、Plain Memo は Firebase Realtime Database の、あなたのアカウントの Firebase のユーザー ID の場所に、乱数と端末ごとの乱数の ID を書きます。Plain Memo を開いているほかの端末はそこを見ていて、知らせを受けると Google Drive から変更を読みます。書くたびに前の値を置き換えるので、残るのは最後の 1 件だけです。このために Plain Memo は、あなたの Google アカウントで Firebase Authentication にログインします。Firebase には、Firebase のユーザー ID・メールアドレス・最初と最後にログインした時刻が残り、開発者は Firebase のコンソールでそれを見ることができます。メモの本文と題名・メモの件数・Google Drive のファイル名・暗号化の鍵を Firebase に送ることはありません。変更の知らせを使えるのは、開発者が許可した Google アカウントだけです。ほかのアカウントも Google Drive を通して数分後に同期しますが、Firebase にログインの記録が残ることがあります。Firebase は Google が運営し、知らせのデータは Google のシンガポールのリージョン（<code>asia-southeast1</code>）に置かれます。</li>
+      <li>メモを、開発者やほかの第三者に送ることはありません。メモは端末とあなたの Google Drive の間だけを行き来します。アカウントの識別子とメールアドレスは、上のとおり Google（Google Drive と Firebase）へだけ送ります。解析・広告・追跡も行いません。データを売ったり、共有したり、渡したりすることもありません。</li>
       <li>Google API から受け取った情報の利用と転送は、Limited Use の要件を含む <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a> に従います。</li>
-      <li>データの削除：アプリの設定でアカウントを削除すると、その端末からメモとトークンを消します。アクセスの取り消しは <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> で、Google Drive 上のデータの削除は Google Drive の「Plain Memo」フォルダを削除すると行えます。</li>
+      <li>データの削除：アプリの設定でアカウントを削除すると、その端末からメモとトークンを消します。アクセスの取り消しは <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> で、Google Drive 上のデータの削除は Google Drive の「Plain Memo」フォルダを削除すると行えます。Firebase のログインの記録と知らせのデータの削除は、<a href="https://github.com/sonatard/plain-memo-docs/issues">GitHub Issues</a> で開発者に頼めます（メールアドレスを書き込む必要はありません）。</li>
       <li>このポリシーを変えるときは、このページで知らせます。問い合わせは <a href="https://github.com/sonatard/plain-memo-docs/issues">GitHub Issues</a> で受け付けます。</li>
     </ul>
   </section>
